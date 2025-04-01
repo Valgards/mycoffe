@@ -1,0 +1,17 @@
+{% extends 'gallery/base.html' %}
+
+{% block content %}
+<h1>Liked Pictures</h1>
+<div class="picture-grid">
+    {% for picture in pictures %}
+    <div class="picture">
+        <a href="{% url 'picture-detail' picture.pk %}">
+            <img src="{{ picture.image.url }}" alt="{{ picture.title }}">
+            <h3>{{ picture.title }}</h3>
+        </a>
+    </div>
+    {% empty %}
+    <p>You haven't liked any pictures yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'gallery/base.html' %}
+
+{% block content %}
+<h1>{{ picture.title }}</h1>
+<img src="{{ picture.image.url }}" style="max-width: 600px;">
+<p style="font-size: 0.8em;">{{ picture.description }}</p>
+
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'like-picture' picture.pk %}">
+        {% csrf_token %}
+        <button type="submit">
+            {% if liked %}❤️ Unlike{% else %}🤍 Like{% endif %}
+        </button>
+    </form>
+{% endif %}
+{% endblock %}
